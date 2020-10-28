@@ -288,11 +288,15 @@ class ResourceMethod(BaseMethod):
 
         # write content
         with open(content_path, "w") as f:
-            f.write(utf8(body))
+# Updated to support python3.x
+#            f.write(utf8(body))
+            f.write(utf8(body).decode())
 
         # write headers
         with open(headers_path, "w") as f:
-            f.write(utf8(headers))
+# Updated to support python3.x
+#            f.write(utf8(headers))
+            f.write(utf8(headers).decode())
 
     def delete(self):
         # delete all resource method body and headers

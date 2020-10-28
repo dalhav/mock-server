@@ -44,12 +44,16 @@ class ExtendedJSONEncoder(json.JSONEncoder):
 
 
 def slugify(value, delimiter="-"):
-    slug = unicodedata.normalize("NFKD", unicode(value)).encode("ascii", "ignore")
+#    Updated to support python3.x
+#    slug = unicodedata.normalize("NFKD", unicode(value)).encode("ascii", "ignore")
+    slug = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode('utf8')
     slug = re.sub(r"[^\w]+", " ", slug)
     return delimiter.join(slug.lower().strip().split())
 
 
 def slugify_and_camel(value):
-    slug = unicodedata.normalize("NFKD", unicode(value)).encode("ascii", "ignore")
+#    Updated to support python3.x
+#    slug = unicodedata.normalize("NFKD", unicode(value)).encode("ascii", "ignore")
+    slug = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode('utf8')
     slug = re.sub(r"[^\w]+", " ", slug)
     return "".join([item.capitalize() for item in slug.strip().split()])
